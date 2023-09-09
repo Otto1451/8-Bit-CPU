@@ -1,24 +1,24 @@
 FORMAT: <OPCODE> <DESTINATION>, <SOURCE> 
-          	   Operation    Code (Hex)
-Load:     	   LOD 	        10
-Store:    	   STO          11
-Add:      	   ADD          20
-Subtract: 	   SUB          21
-Add With Carry:    ADC	        22
-Jump:              JMP          30
-Jump If Zero:      JZ           31
-Jump IF Carry:     JC           32
-Jump If Not Zero:  JNZ	        33
-Jump If Not Carry: JNC		34
-Halt:              HLT          FF
+          	        Operation    Code (Hex)
+Load:     	        LOD 	     10
+Store:    	        STO          11
+Add:      	        ADD          20
+Subtract: 	        SUB          21
+Add With Carry:     ADC	         22
+Jump:               JMP          30
+Jump If Zero:       JZ           31
+Jump IF Carry:      JC           32
+Jump If Not Zero:   JNZ	         33
+Jump If Not Carry:  JNC		     34
+Halt:               HLT          FF
 
 
 
 CODE FOR 16 BIT ADDITION
- LOD A,   [low byte 1]
- ADD A,   [low byte 2]
- STO [low byte sum], A
- LOD A,   [high byte 1]
- ADC A,   [high byte 2]
- STO [high byte sum], A
+    LOD A,   [low byte 1]
+    ADD A,   [low byte 2]
+    STO [low byte sum], A
+    LOD A,   [high byte 1]
+    ADC A,   [high byte 2]
+    STO [high byte sum], A
 
