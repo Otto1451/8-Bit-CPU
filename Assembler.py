@@ -36,7 +36,7 @@ def main():
         if opcode == False:
             if word[0] == "[" and word[len(word) - 1] == "]":
                 assembled_code.write(word[1:(len(word) - 1)])
-        assembled_code.write("\n")
+        assembled_code.write(" ")
     code.close()
     assembled_code.close()
 main()
