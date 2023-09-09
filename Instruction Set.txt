@@ -7,7 +7,7 @@ Subtract: 	        SUB          21
 Add With Carry:     ADC	         22
 Jump:               JMP          30
 Jump If Zero:       JZ           31
-Jump IF Carry:      JC           32
+Jump If Carry:      JC           32
 Jump If Not Zero:   JNZ	         33
 Jump If Not Carry:  JNC		     34
 Halt:               HLT          FF
