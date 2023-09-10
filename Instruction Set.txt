@@ -4,6 +4,8 @@ Load A:     	    LOD A	     10
 Store A:    	    STO A        11
 Load B:             LOD B        12
 Store B:            STO B        13
+Load SP:            LOD SP       14
+Store SP, A         STO SP, A    15     (Stores value of A in RAM at location in SP, only 1 byte)
 Add A:      	    ADD          20
 Subtract A: 	    SUB          21
 Add With Carry A:   ADC	         22
@@ -14,6 +16,8 @@ Jump If Not Zero:   JNZ	         33
 Jump If Not Carry:  JNC		     34
 Move A, B           MOV A, B     40     (Only requires 1 byte, no address required)
 Move B, A           MOV B, A     41
+Push                PUSH         COMPOSITE
+Pop                 POP          COMPOSITE
 Halt:               HLT          FF
 
 
