@@ -12,6 +12,8 @@ Jump If Zero:       JZ           31
 Jump If Carry:      JC           32
 Jump If Not Zero:   JNZ	         33
 Jump If Not Carry:  JNC		     34
+Move A, B           MOV A, B     40     (Only requires 1 byte, no address required)
+Move B, A           MOV B, A     41
 Halt:               HLT          FF
 
 
