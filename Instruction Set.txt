@@ -1,26 +1,32 @@
 FORMAT: <OPCODE> <DESTINATION>, <SOURCE> 
           	        Operation    Code (Hex)
-Load A:     	    LOD A	     10
-Store A:    	    STO A        11
-Load B:             LOD B        12
-Store B:            STO B        13
-Load SP:            LOD SP       14
-Store SP, A         STO SP, A    15     (Stores value of A in RAM at location in SP, only 1 byte)
-Add A:      	    ADD          20
-Subtract A: 	    SUB          21
-Add With Carry A:   ADC	         22
-Jump:               JMP          30
-Jump If Zero:       JZ           31
-Jump If Carry:      JC           32
-Jump If Not Zero:   JNZ	         33
-Jump If Not Carry:  JNC		     34
-Move A, B           MOV A, B     40     (Only requires 1 byte, no address required)
-Move B, A           MOV B, A     41
-Push                PUSH         COMPOSITE
-Pop                 POP          COMPOSITE
-Halt:               HLT          FF
+Load A:     	    LOD A, []	     10
+Store A:    	    STO [], A        11
+Load B:             LOD B, []        12
+Store B:            STO [], B        13
+Load SP:            LOD SP, []       14
+Store SP, A         STO SP, A        15     (Stores value of A in RAM at location in SP, only 1 byte)
+Add A:      	    ADD A, []        20
+Subtract A: 	    SUB A, []        21
+Add With Carry A:   ADC	A, []        22
+Jump:               JMP []           30
+Jump If Zero:       JZ []            31
+Jump If Carry:      JC []            32
+Jump If Not Zero:   JNZ []           33
+Jump If Not Carry:  JNC	[]	         34
+Move A, B           MOV A, B         40     (Only requires 1 byte)
+Move B, A           MOV B, A         41
+Move A, SP          MOV A, SP        42     
+Move SP, A          MOV SP, A        43
+Push                PUSH SP, A       COMPOSITE
+Pop                 POP A, SP        COMPOSITE
+Halt:               HLT              FF
 
-
+Note: STO SP, A is still quite buggy and will cause data at 00 to also be changed. Therefore, data at location 00 should
+      not be used if STO SP, A is used.
+Note: A stands for ACC, [address] is used to get data at that address in RAM written in hex and [] is usually the input.
+Note: Instructions that require only 1 byte will be in the format: <OPCODE> 00
+Note: COMPOSITE referes to instructions that are made up of smaller instructions as shown below:
 
 CODE FOR 16 BIT ADDITION
     LOD A,   [low byte 1]
