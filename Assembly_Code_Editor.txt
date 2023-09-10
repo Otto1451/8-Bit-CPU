@@ -1,3 +1,4 @@
+# Multiplication
 LOD A, [0b]
 ADD A, [01]
 STO [0b], A
@@ -7,5 +8,5 @@ STO [0a], A
 LOD A, [06]
 SUB A, [04]
 STO [06], A
-JNZ 00
+JNZ [00]
 HLT
