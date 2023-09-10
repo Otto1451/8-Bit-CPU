@@ -1,10 +1,12 @@
 FORMAT: <OPCODE> <DESTINATION>, <SOURCE> 
           	        Operation    Code (Hex)
-Load:     	        LOD 	     10
-Store:    	        STO          11
-Add:      	        ADD          20
-Subtract: 	        SUB          21
-Add With Carry:     ADC	         22
+Load A:     	    LOD A	     10
+Store A:    	    STO A        11
+Load B:             LOD B        12
+Store B:            STO B        13
+Add A:      	    ADD          20
+Subtract A: 	    SUB          21
+Add With Carry A:   ADC	         22
 Jump:               JMP          30
 Jump If Zero:       JZ           31
 Jump If Carry:      JC           32
