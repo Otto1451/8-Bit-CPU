@@ -1,0 +1,41 @@
+# This program multiplies 2 numbers together, where the second number must only be 1 byte.
+# Overflow here is not accounted for.
+# Note that [] refers to data at address in []
+
+# Value of identifier
+# NEG1:   1
+# NUM1:   01, A7
+# NUM2:   00, 1C
+# RESULT: 00, 00
+
+# MOCK constant locations
+CONSTANTS = {
+    NEG1 = 04
+    NUM1 = 00
+    NUM2 = 05
+    RESULT = 0a
+    START_OF_PROGRAM = 00
+}
+
+# Multiplication is done by repeated addition until NUM2 is decremented to 0
+# Add low-order byte
+LOD A, [RESULT + 1]
+ADD A, [NUM1 + 1]
+STO [RESULT + 1], A
+
+# Add high-order byte
+LOD A, [RESULT]
+ADC A, [NUM1]
+STO [RESULT], A
+
+# Decrement NUM2
+LOD A, [NUM2 + 1]
+SUB A, [NEG1]
+STO [NUM2 + 1], A
+
+# Repeat if NUM2 is not 0
+JNZ START_OF_PROGRAM
+HLT
+
+# Assembled code for NEG1 = 04, NUM1 = 0001, NUM2 = 0506, RESULT = 0a0b, START_OF_PROGRAM = 00:
+# 10 0b 20 01 11 0b 10 0a 22 00 11 0a 10 06 21 04 11 06 33 00 ff

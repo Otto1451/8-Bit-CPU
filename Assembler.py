@@ -16,29 +16,20 @@ instruction_set = [
 ]
 
 def main():
-    code = open("Assembly_Code.txt", "r")
+    # The file Assembly_Code_Editor.txt will act as a code editor where assembly is written
+    # Once assembled, it will be stored in the file Assembled_Code.txt to be transfered to the RAM
+    editor = open("Assembly_Code_Editor.txt", "r")
     assembled_code = open("Assembled_Code.txt", "a")
-    read_content = code.read().split()
+    lines = editor.readlines()
+    # Remove the /n in each line of lines and remove spacing
+    for i in range(len(lines)):
+        lines[i] = lines[i].replace(" ", "")
+        line = lines[i]
+        if i != len(lines) - 1:
+            lines[i] = line[0:len(line) - 1]
+    print(lines)
+            
 
-    # Remove commas in instruction
-    for i in range(len(read_content)):
-        word = read_content[i]
-        if word[len(word) - 1] == ",":
-            read_content[i] = word[0: len(word) - 1]
-
-    for word in read_content:
-        opcode = False
-        for j in range(len(instruction_set)):
-            if instruction_set[j][0] == word:
-                assembled_code.write(instruction_set[j][1])
-                opcode = True
-                break
-        if opcode == False:
-            if word[0] == "[" and word[len(word) - 1] == "]":
-                assembled_code.write(word[1:(len(word) - 1)])
-            else:
-                assembled_code.write(word)
-        assembled_code.write(" ")
-    code.close()
+    editor.close()
     assembled_code.close()
 main()
