@@ -1,0 +1,9 @@
+# Value at 03 and 04 will be stored on stack then retrieved back to 05 (04) and 06 (03)
+LOD A, [03]
+PUSH SP, A
+LOD A, [04]
+PUSH SP, A
+POP A, SP
+STO [05], A
+POP A, SP
+STO [06], A

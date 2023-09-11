@@ -1,9 +1,4 @@
-# Save A in B
-MOV B, A
-# Decrement
-MOV A, SP
-SUB A, [01]
-MOV SP, A
-# Store
-MOV A, B
-STO SP, A 
+LOD A, [03]
+PUSH SP, A
+POP A, SP
+HLT

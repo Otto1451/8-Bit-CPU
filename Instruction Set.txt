@@ -6,6 +6,7 @@ Load B:             LOD B, []        12
 Store B:            STO [], B        13
 Load SP:            LOD SP, []       14
 Store SP, A         STO SP, A        15     (Stores value of A in RAM at location in SP, only 1 byte)
+Load B, SP          LOD B, SP        16     (Loads value at SP into B)
 Add A:      	    ADD A, []        20
 Subtract A: 	    SUB A, []        21
 Add With Carry A:   ADC	A, []        22
@@ -19,7 +20,7 @@ Move B, A           MOV B, A         41     (Only requires 1 byte)
 Move A, SP          MOV A, SP        42     (Only requires 1 byte)     
 Move SP, A          MOV SP, A        43     (Only requires 1 byte)
 Push                PUSH SP, A       COMPOSITE: 41 00 42 00 21 01 43 00 40 00 15 00 
-Pop                 POP A, SP        COMPOSITE
+Pop                 POP A, SP        COMPOSITE: 16 00 10 02 15 00 42 00 20 01 43 00 
 Halt:               HLT              FF     (Only requires 1 byte)
 
 Notes:
@@ -44,7 +45,17 @@ COMPOSITES:
         STO SP, A 
     PUSH SP, A = 41 00 42 00 21 01 43 00 40 00 15 00 
 
+    Let data at 02 be 00
     POP A, SP:
-        #  Saves 
+        # Load data at SP in B
+        LOD B, SP
+        # Delete data at SP
+        LOD A, [02]
+        STO SP, A
+        # Increment SP
+        MOV A, SP
+        ADD A, [01]
+        MOV SP, A
+    POP A, SP = 16 00 10 02 15 00 42 00 20 01 43 00 
 
 
