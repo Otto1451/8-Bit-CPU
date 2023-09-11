@@ -2,25 +2,11 @@
 # A stands for ACC, [address] is used to get data at that address in RAM written in hex
 
 INSTRUCTION_SET = [
-    ["LODA,[]", "10"],
-    ["STO[],A", "11"],
-    ["LODB,[]", "12"],
-    ["STO[],B", "13"],
-    ["LODSP,[]", "14"],
-    ["STOSP,A", "15"],
-    ["ADDA,[]", "20"],
-    ["SUBA,[]", "21"],
-    ["ADCA,[]", "22"],
-    ["JMP[]", "30"],
-    ["JZ[]", "31"],
-    ["JC[]", "32"],
-    ["JNZ[]", "33"],
-    ["JNC[]", "34"],
-    ["MOVA,B", "40"],
-    ["MOVB,A", "41"],
-    ["MOVA,SP", "42"],
-    ["MOVSP,A", "43"],
-    ["PUSHSP,A", ""],
+    ["LODA,[]", "10"], ["STO[],A", "11"], ["LODB,[]", "12"], ["STO[],B", "13"], ["LODSP,[]", "14"], ["STOSP,A", "15"],
+    ["ADDA,[]", "20"], ["SUBA,[]", "21"], ["ADCA,[]", "22"],
+    ["JMP[]", "30"], ["JZ[]", "31"], ["JC[]", "32"], ["JNZ[]", "33"], ["JNC[]", "34"],
+    ["MOVA,B", "40"], ["MOVB,A", "41"], ["MOVA,SP", "42"], ["MOVSP,A", "43"],
+    ["PUSHSP,A", "41 00 42 00 21 01 43 00 40 00 15 00 "],
     ["POPA,SP", ""],
     ["HLT", "ff"]
 ]

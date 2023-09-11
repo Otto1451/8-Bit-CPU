@@ -1,12 +1,9 @@
-# Multiplication
-LOD A, [0b]
-ADD A, [01]
-STO [0b], A
-LOD A, [0a]
-ADC A, [00]
-STO [0a], A
-LOD A, [06]
-SUB A, [04]
-STO [06], A
-JNZ [00]
-HLT
+# Save A in B
+MOV B, A
+# Decrement
+MOV A, SP
+SUB A, [01]
+MOV SP, A
+# Store
+MOV A, B
+STO SP, A 

@@ -15,24 +15,36 @@ Jump If Carry:      JC []            32
 Jump If Not Zero:   JNZ []           33
 Jump If Not Carry:  JNC	[]	         34
 Move A, B           MOV A, B         40     (Only requires 1 byte)
-Move B, A           MOV B, A         41
-Move A, SP          MOV A, SP        42     
-Move SP, A          MOV SP, A        43
-Push                PUSH SP, A       COMPOSITE
+Move B, A           MOV B, A         41     (Only requires 1 byte)
+Move A, SP          MOV A, SP        42     (Only requires 1 byte)     
+Move SP, A          MOV SP, A        43     (Only requires 1 byte)
+Push                PUSH SP, A       COMPOSITE: 41 00 42 00 21 01 43 00 40 00 15 00 
 Pop                 POP A, SP        COMPOSITE
-Halt:               HLT              FF
+Halt:               HLT              FF     (Only requires 1 byte)
 
-Note: STO SP, A is still quite buggy and will cause data at 00 to also be changed. Therefore, data at location 00 should
+Notes:
+- STO SP, A is still quite buggy and will cause data at 00 to also be changed. Therefore, data at location 00 should
       not be used if STO SP, A is used.
-Note: A stands for ACC, [address] is used to get data at that address in RAM written in hex and [] is usually the input.
-Note: Instructions that require only 1 byte will be in the format: <OPCODE> 00
-Note: COMPOSITE referes to instructions that are made up of smaller instructions as shown below:
+- Stack pointer should first be assigned to 00, and the data at 01 should be 01 when using PUSH or POP
+- A stands for ACC, [address] is used to get data at that address in RAM written in hex and [] is usually the input.
+- Instructions that require only 1 byte will be in the format: <OPCODE> 00
+- COMPOSITE referes to instructions that are made up of smaller instructions as shown below:
 
-CODE FOR 16 BIT ADDITION
-    LOD A,   [low byte 1]
-    ADD A,   [low byte 2]
-    STO [low byte sum], A
-    LOD A,   [high byte 1]
-    ADC A,   [high byte 2]
-    STO [high byte sum], A
+COMPOSITES:
+    Let data at 01 be 01. 
+    PUSH SP, A:
+        # Save A in B
+        MOV B, A
+        # Decrement
+        MOV A, SP
+        SUB A, [01]
+        MOV SP, A
+        # Store
+        MOV A, B
+        STO SP, A 
+    PUSH SP, A = 41 00 42 00 21 01 43 00 40 00 15 00 
+
+    POP A, SP:
+        #  Saves 
+
 

@@ -1,0 +1,8 @@
+CODE FOR 16 BIT ADDITION
+    LOD A,   [low byte 1]
+    ADD A,   [low byte 2]
+    STO [low byte sum], A
+    LOD A,   [high byte 1]
+    ADC A,   [high byte 2]
+    STO [high byte sum], A
+
